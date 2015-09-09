@@ -11,11 +11,9 @@
 	- Change your boot to desktop environment.
 
 3. Now start the terminal and update your system:
-
 `sudo apt-get update && sudo apt-get upgrade`
 
 4. Install chromium (browser), x11 server utils and unclutter (hide the cursor from the screen)
-
 ```
 sudo apt-get install chromium x11-xserver-utils unclutter
 ```
