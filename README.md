@@ -23,7 +23,7 @@
 
 5. When the GUI starts up chromium needs to boot in kiosk-mode and open the webpage. Because of that we edit the autostart file:
 	```
-	sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+	sudo nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -61,7 +61,7 @@
 	```
 	nano /home/pi/fullscreen.sh
 	```
-	Fullscreen shell script should look like this:
+	Fullscreen shell script should look like this: (example replace [URL] http://github.com/elalemanyo/raspberry-pi-kiosk-screen) 
 
 	```
 	sudo -u pi epiphany-browser -a -i --profile ~/.config [URL] --display=:0 &
@@ -76,7 +76,7 @@
 
 6. Edit the autostart file to run the script:
 	```
-	sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+	sudo nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -86,7 +86,7 @@
 	@xset s noblank
 	@/home/pi/fullscreen.sh
 	```
-
+	
 7. Reload the page (if needed) every hour:
 	```
 	crontab -e
@@ -136,7 +136,7 @@
 
 6. Edit the autostart file to run the script:
 	```
-	sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+	sudo nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -199,7 +199,7 @@
 
 6. Edit the autostart file to run the script:
 	```
-	sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+	sudo nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
