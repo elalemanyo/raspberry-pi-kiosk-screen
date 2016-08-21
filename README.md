@@ -1,5 +1,7 @@
 # Create Raspberry Pi Kiosk on Raspbian Debian Wheezy
 
+*[Chromium is not available](http://unix.stackexchange.com/questions/182061/installing-chromium-browser-on-debian-wheezy-depends-chromium-10-but-it-is) in Debian Wheezy on the armhf architcture for the Raspberry Pi 3. If you get a "package not found" error when attempting to install chromium, try another browser below."
+
 ## Chromium Browser ##
 
 1. Install Raspbian Debian Wheezy
