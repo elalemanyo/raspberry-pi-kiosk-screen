@@ -25,7 +25,7 @@
 
 5. When the GUI starts up chromium needs to boot in kiosk-mode and open the webpage. Because of that we edit the autostart file:
 	```
-	sudo nano ~/.config/lxsession/LXDE-pi/autostart
+	nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -73,12 +73,12 @@
 
 	Change file mode:
 	```
-	sudo chmod 755 /home/pi/fullscreen.sh
+	chmod 755 /home/pi/fullscreen.sh
 	```
 
 6. Edit the autostart file to run the script:
 	```
-	sudo nano ~/.config/lxsession/LXDE-pi/autostart
+	nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -133,12 +133,12 @@
 
 	Change file mode:
 	```
-	sudo chmod 755 /home/pi/fullscreen.sh
+	chmod 755 /home/pi/fullscreen.sh
 	```
 
 6. Edit the autostart file to run the script:
 	```
-	sudo nano ~/.config/lxsession/LXDE-pi/autostart
+	nano ~/.config/lxsession/LXDE-pi/autostart
 	```
 
 	The autostart files needs to look like this:
@@ -196,7 +196,7 @@
 
 	Change file mode:
 	```
-	sudo chmod 755 /home/pi/fullscreen.sh
+	chmod 755 /home/pi/fullscreen.sh
 	```
 
 6. Edit the autostart file to run the script:
