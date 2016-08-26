@@ -231,71 +231,39 @@
 	```
 	0 */1 * * * xte -x :0 "key F5"
 	```
+## Connecting to Wi-Fi on boot
 
-## Splashscreen ##
+You may wish to have your Kiosk device connect automatically both to your home wifi (where you test it) as well as the wireless network where you deploy it.
 
-1. Install Frame Buffer Imageviewer (FBI):
+In `/etc/network/interfaces` Add a line that says to cause wireless to connect automatically
 
-	```
-	sudo apt-get install fbi
-	```
-2. Upload splash.png:
+    auto wlan0
+    
+    
+Then edit `/etc/wpa_supplicant/wpa_supplicant.conf` to define one or more wireless networks, changing the SSIDs and passwords to match your networks. The `id_str` values just need to be unique. 
 
-	```
-	scp splash.png pi@[IP raspberry pi]:splash.png
-	```
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
 
-3. Move splash image to /etc/:
+network={
+    ssid="SCHOOLS NETWORK NAME"
+    psk="SCHOOLS PASSWORD"
+    id_str="school"
+}
 
-	```
-	sudo mv splash.png /etc/
-	```
+network={
+    ssid="HOME NETWORK NAME"
+    psk="HOME PASSWORD"
+    id_str="home"
+}
+```    
 
-4. Add script:
+References:
 
-	```
-	sudo nano /etc/asplashscreen
-	```
-
-	```
-	do_start () {
-		/usr/bin/fbi -T 1 -noverbose -a /etc/splash.png
-		exit 0
-	}
-	case "$1" in
-		start|"")
-	do_start
-	;;
-	restart|reload|force-reload)
-	echo "Error: argument '$1' not supported" >&2
-	exit 3
-	;;
-	stop)
-	# No-op
-	;;
-	status)
-	exit 0
-	;;
-	*)
-	echo "Usage: asplashscreen [start|stop]" >&2
-	exit 3
-	;;
-	esac
-	:
-	```
-
-5. Run:
-
-	```
-	sudo mv asplashscreen /etc/init.d/asplashscreen
-	```
-
-6. Run:
-
-	```
-	sudo chmod a+x /etc/init.d/asplashscreen
-	sudo insserv /etc/init.d/asplashscreen
-	```
+ * [How to get Wi-Fi to connect on boot?](http://raspberrypi.stackexchange.com/questions/13558/how-to-get-wi-fi-to-connect-on-boot)
+ * [How to setup multiple wifi networks?](http://raspberrypi.stackexchange.com/questions/11631/how-to-setup-multiple-wifi-networks)
+    
 
 ## Sources ##
 
