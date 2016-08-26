@@ -63,7 +63,7 @@
 	```
 	nano /home/pi/fullscreen.sh
 	```
-	Fullscreen shell script should look like this: (example replace [URL] http://github.com/elalemanyo/raspberry-pi-kiosk-screen) 
+	Fullscreen shell script should look like this: (example replace [URL] http://github.com/elalemanyo/raspberry-pi-kiosk-screen)
 
 	```
 	sudo -u pi epiphany-browser -a -i --profile ~/.config [URL] --display=:0 &
@@ -88,7 +88,7 @@
 	@xset s noblank
 	@/home/pi/fullscreen.sh
 	```
-	
+
 7. Reload the page (if needed) every hour:
 	```
 	crontab -e
@@ -232,6 +232,70 @@
 	0 */1 * * * xte -x :0 "key F5"
 	```
 
+## Splashscreen ##
+
+1. Install Frame Buffer Imageviewer (FBI):
+
+	```
+	sudo apt-get install fbi
+	```
+2. Upload splash.png:
+
+	```
+	scp splash.png pi@[IP raspberry pi]:splash.png
+	```
+
+3. Move splash image to /etc/:
+
+	```
+	sudo mv splash.png /etc/
+	```
+
+4. Add script:
+
+	```
+	sudo nano /etc/asplashscreen
+	```
+
+	```
+	do_start () {
+		/usr/bin/fbi -T 1 -noverbose -a /etc/splash.png
+		exit 0
+	}
+	case "$1" in
+		start|"")
+	do_start
+	;;
+	restart|reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+	stop)
+	# No-op
+	;;
+	status)
+	exit 0
+	;;
+	*)
+	echo "Usage: asplashscreen [start|stop]" >&2
+	exit 3
+	;;
+	esac
+	:
+	```
+
+5. Run:
+
+	```
+	sudo mv asplashscreen /etc/init.d/asplashscreen
+	```
+
+6. Run:
+
+	```
+	sudo chmod a+x /etc/init.d/asplashscreen
+	sudo insserv /etc/init.d/asplashscreen
+	```
 
 ## Sources ##
 
