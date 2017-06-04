@@ -1,8 +1,23 @@
 # Create Raspberry Pi Kiosk on Raspbian Debian Wheezy
 
+## Table of Contents
+1. [Raspbian Wheezy](#raspbian-wheezy)  
+ 1.1. [Chromium Browser](#chromium-browser)  
+ 1.2. [Epiphany Browser](#epiphany-browser)  
+ 1.3. [Midori Browser](#midori-browser)  
+ 1.4. [Firefox (Iceweasel)](#firefox-iceweasel)
+2. [Raspbian Jessie](#raspbian-jessie)  
+ 2.1. [Chromium Browser](#chromium-browser)  
+3. [Connecting to Wi-Fi on boot](#connecting-to-wi-fi-on-boot)
+4. [Splashscreen](#splashscreen)
+5. [References](#references)
+6. [Sources](#sources)
+
+## Raspbian Wheezy
+
 *[Chromium is not available](http://unix.stackexchange.com/questions/182061/installing-chromium-browser-on-debian-wheezy-depends-chromium-10-but-it-is) in Debian Wheezy on the armhf architcture for the Raspberry Pi 3. If you get a "package not found" error when attempting to install chromium, try another browser below."
 
-## Chromium Browser ##
+### Chromium Browser ###
 
 1. Install Raspbian Debian Wheezy
 
@@ -39,7 +54,7 @@
 	@chromium --noerrdialogs --kiosk [URL] --incognito --disable-translate
 	```
 
-## Epiphany Browser ##
+### Epiphany Browser ###
 
 1. Install Raspbian Debian Wheezy
 
@@ -99,7 +114,7 @@
 	0 */1 * * * xte -x :0 "key F5"
 	```
 
-## Midori Browser ##
+### Midori Browser ###
 
 1. Install Raspbian Debian Wheezy
 
@@ -159,7 +174,7 @@
 	su -l pi -c startx
 	```
 
-## Firefox (Iceweasel) ##
+### Firefox (Iceweasel) ###
 
 1. Install Raspbian Debian Wheezy
 
@@ -231,6 +246,46 @@
 	```
 	0 */1 * * * xte -x :0 "key F5"
 	```
+
+## Raspbian Jessie
+
+### Chromium Browser ###
+
+1. Install Raspbian Debian Jessie
+
+2. `sudo raspi-config`
+	- Update the Raspi config tool (Advanced Options)
+	- Enable SSH
+	- Disable overscan. (Advanced Options)
+
+3. Now start the terminal and update your system:
+	```
+	sudo apt-get update
+	sudo apt-get upgrade
+	```
+
+4. Install unclutter (hide the cursor from the screen)
+	```
+	sudo apt-get install unclutter
+	```
+
+5. When the GUI starts up chromium needs to boot in kiosk-mode and open the webpage. Because of that we edit the autostart file:
+	```
+	nano ~/.config/lxsession/LXDE-pi/autostart
+	```
+
+	The autostart files needs to look like this:
+	```
+	@lxpanel --profile LXDE-pi
+	@pcmanfm --desktop --profile LXDE-pi
+	@xset s off
+	@xset -dpms
+	@xset s noblank
+	@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium-browser Default/Preferences
+	@chromium-browser --noerrdialogs --kiosk [URL] --incognito --disable-translate
+	```
+
+
 
 ## Connecting to Wi-Fi on boot ##
 
