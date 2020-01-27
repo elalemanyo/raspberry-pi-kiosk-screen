@@ -51,7 +51,7 @@
 	@xset -dpms
 	@xset s noblank
 	@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium Default/Preferences
-	@chromium --noerrdialogs --kiosk [URL] --incognito --disable-translate
+	@chromium-desktop --noerrdialogs --kiosk [URL] --incognito --disable-translate
 	```
 
 ### Epiphany Browser ###
