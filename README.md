@@ -273,6 +273,10 @@
 	```
 	nano ~/.config/lxsession/LXDE-pi/autostart
 	```
+	or
+	```
+	sudo nano /etc/xdg/lxsession/LXDE-pi/autostarts
+	```
 
 	The autostart files needs to look like this:
 	```
